@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — AI Consent Guardian</title>
+  <meta name="description" content="Learn about AI Consent Guardian, an intelligent tool empowering digital privacy awareness through AI, cybersecurity, and modern web tech.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="{{ url_for('index') }}" class="nav-brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z"/></svg>
+      </div>
+      <span>AI Consent Guardian</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+      <li><a href="{{ url_for('about') }}" class="nav-link active">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    
+    <div class="about-header">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        About The Project
+      </div>
+      <h1 class="hero-title" style="font-size:2.8rem;">What is AI Consent Guardian?</h1>
+      <p class="hero-subtitle">
+        AI Consent Guardian is an AI-powered privacy analysis application built to give everyday internet users clarity before clicking "I Agree". It parses dense legal documents and extracts data collection practices, security risks, user permissions, and red flags into simple, actionable visual dashboards.
+      </p>
+    </div>
+
+    <!-- 3 Core Pillars -->
+    <div class="about-grid">
+      
+      <!-- Pillar 1: AI -->
+      <div class="about-pillar-card">
+        <div class="pillar-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12a10 10 0 0 1 17-6.9L12 12z"></path></svg>
+        </div>
+        <h3 class="card-title" style="justify-content:center;">1. Artificial Intelligence</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem;">
+          Leverages cutting-edge Large Language Models (Google Gemini API) for zero-shot legal text analysis, entity extraction, sentiment scoring, and natural language question answering.
+        </p>
+      </div>
+
+      <!-- Pillar 2: Cybersecurity -->
+      <div class="about-pillar-card">
+        <div class="pillar-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h3 class="card-title" style="justify-content:center;">2. Cybersecurity & Privacy</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem;">
+          Promotes user consent awareness and data sovereignty. It flags hidden telemetry, aggressive ad tracking, indefinite data retention, and non-consensual third-party broker sharing.
+        </p>
+      </div>
+
+      <!-- Pillar 3: Internet Programming -->
+      <div class="about-pillar-card">
+        <div class="pillar-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </div>
+        <h3 class="card-title" style="justify-content:center;">3. Internet Programming</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem;">
+          Engineered with Python & Flask, asynchronous Fetch API communications, secure temporary document processing with PyPDF, and a high-contrast responsive glassmorphism interface.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Call to Action Card -->
+    <div class="card" style="margin-top:3rem; text-align:center;">
+      <h3 class="card-title" style="justify-content:center;">Ready to check your privacy policy?</h3>
+      <p style="color:var(--text-muted); margin-bottom:1.5rem;">Paste any Terms & Conditions or upload a document to get instant AI privacy risk insights.</p>
+      <a href="{{ url_for('index') }}" class="btn-primary" style="display:inline-flex; width:auto; margin-top:0;">Analyze a Policy Now</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>AI Consent Guardian &copy; 2026. Designed for transparent privacy & security awareness.</p>
+  </footer>
+
+</body>
+</html>
