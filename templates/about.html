@@ -6,11 +6,13 @@
   <title>About — AI Consent Guardian</title>
   <meta name="description" content="Learn about AI Consent Guardian, an intelligent tool empowering digital privacy awareness through AI, cybersecurity, and modern web tech.">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <a href="{{ url_for('index') }}" class="nav-brand">
       <div class="brand-icon">
         <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z"/></svg>
@@ -24,68 +26,145 @@
   </nav>
 
   <div class="container">
-    
-    <div class="about-header">
+
+    <div class="about-header animate__animated animate__fadeInUp">
       <div class="hero-badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
         About The Project
       </div>
-      <h1 class="hero-title" style="font-size:2.8rem;">What is AI Consent Guardian?</h1>
+      <h1 class="hero-title" style="font-size: clamp(2rem, 5vw, 3rem);">What is AI Consent Guardian?</h1>
       <p class="hero-subtitle">
-        AI Consent Guardian is an AI-powered privacy analysis application built to give everyday internet users clarity before clicking "I Agree". It parses dense legal documents and extracts data collection practices, security risks, user permissions, and red flags into simple, actionable visual dashboards.
+        An AI-powered privacy analysis app that gives everyday internet users clarity before clicking "I Agree". 
+        It parses dense legal documents and extracts data practices, permissions, and red flags into simple visual dashboards.
       </p>
     </div>
 
     <!-- 3 Core Pillars -->
     <div class="about-grid">
-      
-      <!-- Pillar 1: AI -->
-      <div class="about-pillar-card">
+
+      <div class="about-pillar-card" data-aos="fade-up" data-aos-delay="0">
         <div class="pillar-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12a10 10 0 0 1 17-6.9L12 12z"></path></svg>
         </div>
         <h3 class="card-title" style="justify-content:center;">1. Artificial Intelligence</h3>
-        <p style="color:var(--text-muted); font-size:0.95rem;">
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.75;">
           Leverages cutting-edge Large Language Models (Google Gemini API) for zero-shot legal text analysis, entity extraction, sentiment scoring, and natural language question answering.
         </p>
       </div>
 
-      <!-- Pillar 2: Cybersecurity -->
-      <div class="about-pillar-card">
+      <div class="about-pillar-card" data-aos="fade-up" data-aos-delay="100">
         <div class="pillar-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
-        <h3 class="card-title" style="justify-content:center;">2. Cybersecurity & Privacy</h3>
-        <p style="color:var(--text-muted); font-size:0.95rem;">
-          Promotes user consent awareness and data sovereignty. It flags hidden telemetry, aggressive ad tracking, indefinite data retention, and non-consensual third-party broker sharing.
+        <h3 class="card-title" style="justify-content:center;">2. Cybersecurity &amp; Privacy</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.75;">
+          Promotes user consent awareness and data sovereignty. Flags hidden telemetry, aggressive ad tracking, indefinite data retention, and non-consensual third-party broker sharing.
         </p>
       </div>
 
-      <!-- Pillar 3: Internet Programming -->
-      <div class="about-pillar-card">
+      <div class="about-pillar-card" data-aos="fade-up" data-aos-delay="200">
         <div class="pillar-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
         </div>
         <h3 class="card-title" style="justify-content:center;">3. Internet Programming</h3>
-        <p style="color:var(--text-muted); font-size:0.95rem;">
-          Engineered with Python & Flask, asynchronous Fetch API communications, secure temporary document processing with PyPDF, and a high-contrast responsive glassmorphism interface.
+        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.75;">
+          Engineered with Python &amp; Flask, asynchronous Fetch API, secure document processing via PyPDF, and a responsive animated light-mode interface using AOS &amp; modern CSS.
         </p>
       </div>
+    </div>
 
+    <!-- Tech Stack Section -->
+    <div class="features-section" data-aos="fade-up">
+      <h2 class="section-heading">Built With Modern Tech</h2>
+      <div class="tech-chips">
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path></svg>
+          Google Gemini API
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          Python &amp; Flask
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          PyPDF Text Extraction
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          Fetch API (AJAX)
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          CSS Grid &amp; Flexbox
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          AOS Scroll Animations
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"></path></svg>
+          Python-dotenv Config
+        </div>
+        <div class="tech-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          Jinja2 Templates
+        </div>
+      </div>
+    </div>
+
+    <!-- How the Analysis Works -->
+    <div class="card" data-aos="fade-up" style="margin-top: 1rem;">
+      <h3 class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        What the AI Checks
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+        {% set checks = [
+          ('🗂️', 'Data Collected'),
+          ('🔒', 'Permissions Required'),
+          ('📤', 'Third-Party Sharing'),
+          ('🎯', 'Ad & Tracking Practices'),
+          ('⏱️', 'Data Retention Policy'),
+          ('⚖️', 'User Rights'),
+          ('🚩', 'Red Flag Clauses'),
+          ('✅', 'Positive Practices'),
+          ('🛡️', 'Overall Risk Score'),
+          ('💡', 'Accept/Reject Advice'),
+          ('💬', 'Ask AI Q&A'),
+          ('📊', 'Visual Dashboard')
+        ] %}
+        {% for emoji, label in checks %}
+        <div style="display:flex; align-items:center; gap:0.6rem; padding:0.65rem 0.85rem; background:var(--bg-subtle); border-radius:var(--radius-sm); font-size:0.88rem; font-weight:500;">
+          <span style="font-size:1.1rem;">{{ emoji }}</span>
+          <span>{{ label }}</span>
+        </div>
+        {% endfor %}
+      </div>
     </div>
 
     <!-- Call to Action Card -->
-    <div class="card" style="margin-top:3rem; text-align:center;">
-      <h3 class="card-title" style="justify-content:center;">Ready to check your privacy policy?</h3>
-      <p style="color:var(--text-muted); margin-bottom:1.5rem;">Paste any Terms & Conditions or upload a document to get instant AI privacy risk insights.</p>
-      <a href="{{ url_for('index') }}" class="btn-primary" style="display:inline-flex; width:auto; margin-top:0;">Analyze a Policy Now</a>
+    <div class="recommendation-card" data-aos="fade-up" style="text-align:center;">
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.75rem;">Ready to check your privacy?</h3>
+      <p style="color:var(--text-muted); margin-bottom:1.75rem; font-size:1rem;">Paste any Terms &amp; Conditions or upload a PDF/TXT to get instant AI privacy risk insights.</p>
+      <a href="{{ url_for('index') }}" class="btn-primary" style="display:inline-flex; width:auto; margin-top:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Analyze a Policy Now
+      </a>
     </div>
 
   </div>
 
   <footer class="footer">
-    <p>AI Consent Guardian &copy; 2026. Designed for transparent privacy & security awareness.</p>
+    <p>AI Consent Guardian &copy; 2026 &nbsp;·&nbsp; Powered by Google Gemini API &nbsp;·&nbsp; Built for transparent privacy awareness</p>
   </footer>
 
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 60 });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
 </body>
 </html>

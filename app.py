@@ -83,40 +83,46 @@ def extract_text_from_file(file_path, filename):
         raise ValueError("Unsupported file format. Please upload a TXT or PDF file.")
 
 def call_gemini_llm(prompt_text, api_key):
-    """Call Google Gemini API using google-genai, google-generativeai, or REST requests fallback."""
+    """Call Google Gemini API using google-genai SDK with REST fallback."""
     if not api_key:
         raise ValueError("API key for LLM is missing. Please set LLM_API_KEY or GEMINI_API_KEY in your .env file.")
 
-    # Method 1: Try new google.genai SDK
+    # Models confirmed available via ListModels API (prioritized by speed/capability)
+    MODELS_TO_TRY = [
+        "gemini-3.5-flash",       # PRIMARY: confirmed working ✓
+        "gemini-3.6-flash",       # Newer generation flash
+        "gemini-3.7-flash",       # Newer generation flash
+        "gemini-3.8-flash",       # Latest flash (may have high demand)
+        "gemini-3.5-flash-lite",  # Lite fallback
+        "gemini-2.5-flash-lite",  # Lite fallback v2
+    ]
+
+    # Method 1: Try google.genai SDK (recommended)
     try:
         from google import genai
         client = genai.Client(api_key=api_key)
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt_text
-        )
-        if response and response.text:
-            return response.text
+        for model_name in MODELS_TO_TRY:
+            try:
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt_text
+                )
+                if response and response.text:
+                    logger.info(f"Gemini API success via google.genai SDK using model: {model_name}")
+                    return response.text
+            except Exception as model_err:
+                logger.warning(f"Model {model_name} failed via google.genai: {model_err}")
+                continue
+    except ImportError:
+        logger.warning("google.genai SDK not available, falling back to REST API")
     except Exception as e:
-        logger.warning(f"google.genai SDK call failed or model unavailable, trying fallback: {e}")
+        logger.warning(f"google.genai SDK call failed, trying REST fallback: {e}")
 
-    # Method 2: Try legacy google.generativeai SDK
-    try:
-        import google.generativeai as genai_legacy
-        genai_legacy.configure(api_key=api_key)
-        model = genai_legacy.GenerativeModel('gemini-1.5-flash')
-        response = model.generate_content(prompt_text)
-        if response and response.text:
-            return response.text
-    except Exception as e:
-        logger.warning(f"google.generativeai legacy SDK call failed, trying HTTP REST: {e}")
-
-    # Method 3: HTTP REST requests to Gemini API (gemini-2.0-flash / gemini-1.5-flash)
+    # Method 2: HTTP REST requests to Gemini API (direct fallback)
     import requests
-    models_to_try = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
     last_err = None
-    
-    for model_name in models_to_try:
+
+    for model_name in MODELS_TO_TRY:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
         headers = {"Content-Type": "application/json"}
         payload = {
@@ -127,17 +133,20 @@ def call_gemini_llm(prompt_text, api_key):
             ]
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=45)
+            res = requests.post(url, headers=headers, json=payload, timeout=60)
             if res.status_code == 200:
                 data = res.json()
                 text = data['candidates'][0]['content']['parts'][0]['text']
+                logger.info(f"Gemini API success via REST using model: {model_name}")
                 return text
             else:
-                last_err = f"API status {res.status_code}: {res.text}"
+                last_err = f"Model {model_name} - API status {res.status_code}: {res.text[:300]}"
+                logger.warning(last_err)
         except Exception as ex:
             last_err = str(ex)
+            logger.warning(f"REST request failed for model {model_name}: {ex}")
 
-    raise RuntimeError(f"Failed to communicate with LLM API: {last_err}")
+    raise RuntimeError(f"Failed to communicate with Gemini API after trying all models: {last_err}")
 
 def clean_json_response(raw_text):
     """Safely extract and parse JSON object from LLM raw text output."""

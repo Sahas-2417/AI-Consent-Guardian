@@ -1,7 +1,28 @@
+# Environment & secrets — never commit these!
 .env
+api.env
+*.env
+
+# Python
 __pycache__/
 *.pyc
-uploads/*
-!uploads/.gitkeep
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
 .venv/
 venv/
+env/
+
+# Uploaded files
+uploads/*
+!uploads/.gitkeep
+
+# Test/scratch scripts
+test_gemini.py
+
+# IDEs
+.vscode/
+.idea/
+*.swp

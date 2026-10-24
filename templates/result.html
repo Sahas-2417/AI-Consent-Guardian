@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Analysis — AI Consent Guardian</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <a href="{{ url_for('index') }}" class="nav-brand">
       <div class="brand-icon">
         <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z"/></svg>
@@ -24,10 +26,10 @@
 
   <div class="container">
     
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-      <h1 class="hero-title" style="font-size:2.2rem; margin-bottom:0;">Privacy Analysis</h1>
-      <a href="{{ url_for('index') }}" class="btn-primary" style="width:auto; padding:0.6rem 1.25rem; font-size:0.9rem; margin-top:0;">
-        &larr; Analyze Another Policy
+    <div class="animate__animated animate__fadeInDown" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+      <h1 class="hero-title" style="font-size:clamp(1.8rem, 4vw, 2.4rem); margin-bottom:0;">Privacy Analysis</h1>
+      <a href="{{ url_for('index') }}" class="btn-primary" style="width:auto; padding:0.65rem 1.4rem; font-size:0.92rem; margin-top:0;">
+        &larr; Analyze Another
       </a>
     </div>
 
@@ -35,7 +37,7 @@
       {% set risk_lvl = (analysis.risk_level or 'Medium')|lower %}
       {% set risk_score = analysis.risk_score if analysis.risk_score is defined else 50 %}
 
-      <div class="results-dashboard">
+      <div class="results-dashboard" data-aos="fade-up">
         <!-- Dashboard Header -->
         <div class="dashboard-header">
           <!-- Risk Score Card -->
@@ -253,5 +255,12 @@
   </footer>
 
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 60 });
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
 </body>
 </html>
