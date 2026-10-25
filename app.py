@@ -13,18 +13,18 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='public', static_url_path='')
 app.secret_key = os.getenv("SECRET_KEY", "ai-consent-guardian-secret-key-2026")
 
 # Configuration
-UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
+UPLOAD_FOLDER = '/tmp'
 ALLOWED_EXTENSIONS = {'txt', 'pdf'}
 MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB limit
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
 
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 
 # API Keys Configuration
 LLM_API_KEY = os.getenv("LLM_API_KEY") or os.getenv("GEMINI_API_KEY") or ""
